@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace SimpleTrader.EntityFramework
 {
-    internal class SimpleTraderDbContext : DbContext
+    public class SimpleTraderDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<AssetTransaction> Transactions { get; set; }
-        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<AssetTransaction> AssetTransactions { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public SimpleTraderDbContext(DbContextOptions options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=SimpleTraderDB;Trusted_Connection=True;");
-
-            base.OnConfiguring(optionsBuilder);
+            modelBuilder.Entity<AssetTransaction>().OwnsOne(a => a.Stock);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

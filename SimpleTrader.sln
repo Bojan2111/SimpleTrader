@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTrader.Domain", "SimpleTrader.Domain\SimpleTrader.Domain.csproj", "{C2E19CCC-5AA6-46CF-8BCD-05ECE57DDBCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTrader.EntityFramework", "..\SimpleTrader\SimpleTrader.EntityFramework\SimpleTrader.EntityFramework.csproj", "{9E6051EE-8E2C-4DCE-BAC9-029E3D004A51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTrader.EntityFramework", "SimpleTrader.EntityFramework\SimpleTrader.EntityFramework.csproj", "{9E6051EE-8E2C-4DCE-BAC9-029E3D004A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTrader.WPF", "SimpleTrader.WPF\SimpleTrader.WPF.csproj", "{9FDC900F-6013-4752-B079-776B028F413A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{9E6051EE-8E2C-4DCE-BAC9-029E3D004A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E6051EE-8E2C-4DCE-BAC9-029E3D004A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E6051EE-8E2C-4DCE-BAC9-029E3D004A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDC900F-6013-4752-B079-776B028F413A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDC900F-6013-4752-B079-776B028F413A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDC900F-6013-4752-B079-776B028F413A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDC900F-6013-4752-B079-776B028F413A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

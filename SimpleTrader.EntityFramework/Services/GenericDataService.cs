@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure.Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SimpleTrader.Domain.Models;
 using SimpleTrader.Domain.Services;
@@ -36,18 +37,21 @@ namespace SimpleTrader.EntityFramework.Services
             {
                 try
                 {
-                    T entity = await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
-                    context.Set<T>().Remove(entity);
-                    await context.SaveChangesAsync();
+                    T? entity = await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
+                    if (entity != null)
+                    {
+                        context.Set<T>().Remove(entity);
+                        await context.SaveChangesAsync();
 
-                    return true;
+                        return true;
+                    }
+                    return false;
+                    
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    return false;
                 }
-                return false;
             }
         }
 
@@ -55,9 +59,9 @@ namespace SimpleTrader.EntityFramework.Services
         {
             using (SimpleTraderDbContext context = _contextFactory.CreateDbContext())
             {
-                T entity = await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
+                T? entity = await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
 
-                return entity;
+                return entity ?? throw new NullReferenceException();
             }
         }
 

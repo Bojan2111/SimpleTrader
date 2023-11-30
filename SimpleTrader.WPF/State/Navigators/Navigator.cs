@@ -13,10 +13,13 @@ namespace SimpleTrader.WPF.State.Navigators
 {
     public class Navigator : ObservableObject, INavigator
     {
-        private ViewModelBase _viewModel;
+        private ViewModelBase? _viewModel;
         public ViewModelBase CurrentViewModel
         {
-            get { return _viewModel; }
+            get
+            {
+                return _viewModel ?? throw new NullReferenceException(); ;
+            }
             set
             {
                 _viewModel = value;

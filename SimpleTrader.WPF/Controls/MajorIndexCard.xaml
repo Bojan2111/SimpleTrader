@@ -17,7 +17,7 @@
 
             <TextBlock Grid.Row="0"
                        FontSize="18"
-                       Text="{Binding Type, FallbackValue=Name}"/>
+                       Text="{Binding IndexName, FallbackValue=Name}"/>
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>

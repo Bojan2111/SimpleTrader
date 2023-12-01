@@ -30,7 +30,7 @@ namespace SimpleTrader.EntityFramework.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountHolderId")
+                    b.Property<int?>("AccountHolderId")
                         .HasColumnType("int");
 
                     b.Property<double>("Balance")
@@ -51,7 +51,7 @@ namespace SimpleTrader.EntityFramework.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateProcessed")
@@ -82,15 +82,12 @@ namespace SimpleTrader.EntityFramework.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -102,9 +99,7 @@ namespace SimpleTrader.EntityFramework.Migrations
                 {
                     b.HasOne("SimpleTrader.Domain.Models.User", "AccountHolder")
                         .WithMany()
-                        .HasForeignKey("AccountHolderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountHolderId");
 
                     b.Navigation("AccountHolder");
                 });
@@ -113,20 +108,17 @@ namespace SimpleTrader.EntityFramework.Migrations
                 {
                     b.HasOne("SimpleTrader.Domain.Models.Account", "Account")
                         .WithMany("AssetTransactions")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountId");
 
-                    b.OwnsOne("SimpleTrader.Domain.Models.Stock", "Stock", b1 =>
+                    b.OwnsOne("SimpleTrader.Domain.Models.Asset", "Asset", b1 =>
                         {
                             b1.Property<int>("AssetTransactionId")
                                 .HasColumnType("int");
 
-                            b1.Property<double>("PricePerShare")
+                            b1.Property<double?>("PricePerShare")
                                 .HasColumnType("float");
 
                             b1.Property<string>("Symbol")
-                                .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
                             b1.HasKey("AssetTransactionId");
@@ -139,8 +131,7 @@ namespace SimpleTrader.EntityFramework.Migrations
 
                     b.Navigation("Account");
 
-                    b.Navigation("Stock")
-                        .IsRequired();
+                    b.Navigation("Asset");
                 });
 
             modelBuilder.Entity("SimpleTrader.Domain.Models.Account", b =>
